@@ -8,6 +8,7 @@ root = Tk()
 
 
 def numButton(number: str, row: int, col: int):
+    """Creates a number button, places it to the right place and adds a callback upon pressing the button"""
     Button(root,
                   text=number,
                   width=10,
@@ -16,6 +17,7 @@ def numButton(number: str, row: int, col: int):
 
 
 def fireNumber(number):
+    """Callback for adding numbers to a StringVar which feeds the EntryWidget at the bottom"""
     global exp_count
     temp = v.get()
     v.set(temp + number)
@@ -23,6 +25,8 @@ def fireNumber(number):
 
 
 def calc(operator: str):
+    """Callback which is used by the math operators to feed interim_results list,
+    clear the EntryWidged at the bottom and add to the Text Widget to the right"""
     global exp_count
     interim_results.append(v.get()+operator)
     v.set("")
@@ -33,6 +37,7 @@ def calc(operator: str):
 
 
 def evaluate():
+    """Callback to calculate the current equation and write the result into the Text Widget"""
     global exp_count
     if exp_count >= 1:
         expression = ""
@@ -51,6 +56,7 @@ def evaluate():
     exp_count = 0
 
 
+# Generate Widgets
 numButton("1", 0, 0)
 numButton("2", 0, 2)
 numButton("3", 0, 4)
